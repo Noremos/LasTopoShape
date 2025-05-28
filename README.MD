@@ -22,11 +22,12 @@
 ## Пример использования через утилиту
 
 Запустить утилиту с аргументами:
-LasTopoDec 
+LasTopoDec "LiDAR_BIGDATA_GN/Ground_2020_Участок 1.las" output.shp
 
-
-Шаг 1.
-Установить python версии не ниже 3.11
+## Запуск через Python
+1. Установить python версии не ниже 3.11
+2. Установить зависимости: `pip install -r requirements.txt`
+3. Запустить main.py или использовать его в своём скрипте. Пример:
 
 ```python
 preferences = LasReaderSetup()
