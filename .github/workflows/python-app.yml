@@ -59,7 +59,7 @@ jobs:
         run: pyinstaller --onefile LasTopoDec.py
 
       - name: Upload Executable Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: LasTopoDec-exe
           path: dist/LasTopoDec.exe
