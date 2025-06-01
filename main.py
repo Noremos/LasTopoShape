@@ -391,6 +391,7 @@ def process_las_file(las_file_path, output, convertor: LasReaderSetup):
 			for read_start_y in las.get_read_range_y():
 
 				# Читаем чанк
+				timeStart = time.time()
 				chunk, mask = las.read_chunk(read_start_x, read_start_y, convertor.aproximateRectSize)
 				xm = bc.PointMutator()
 				ym = bc.PointMutator()
@@ -399,6 +400,7 @@ def process_las_file(las_file_path, output, convertor: LasReaderSetup):
 				ym.offset = read_start_y
 				print("Обработка чанка...")
 				print("X: {} Y: {}".format(xm.offset, ym.offset))
+
 				bcs = bc.barstruct()
 				bcs.coltype = bc.ColorType.native
 				bcs.proctype = convertor.procType
@@ -415,6 +417,8 @@ def process_las_file(las_file_path, output, convertor: LasReaderSetup):
 				for line in lines:
 					shp.write_polygon_record(line, xm, ym)
 
+				timeEnd = time.time()
+				print(f"Чанк обработан за {timeEnd - timeStart:.2f} секунд")
 				print("------Переход к следующему чанку-----")
 
 	shp.close()
